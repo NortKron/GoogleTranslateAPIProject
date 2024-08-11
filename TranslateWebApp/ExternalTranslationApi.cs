@@ -16,6 +16,7 @@ namespace TranslateWebApp
         {
             List<string> ret = new();
 
+            /*
             TranslationClient client = TranslationClient.CreateFromApiKey(apiKey);
             IList<TranslationResult> results = await client.TranslateTextAsync(
                 inputStrings,
@@ -26,6 +27,12 @@ namespace TranslateWebApp
             foreach (TranslationResult result in results)
             {
                 ret.Add(result.TranslatedText);
+            }
+            */
+
+            for (int i = 0; i < inputStrings.Count; i++)
+            {
+                ret.Add($"translate {i}");
             }
 
             return ret;

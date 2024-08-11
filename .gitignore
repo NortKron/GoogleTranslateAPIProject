@@ -2,9 +2,9 @@
 .vs/
 GRPC-Client/
 GRPC-Server/
-REST-Client/
 
 .git-bit/
+.git-git/
 
 **/bin/
 **/obj/

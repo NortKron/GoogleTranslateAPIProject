@@ -5,11 +5,11 @@ using TranslateWebApp.Interfaces;
 
 namespace TranslateWebApp.Clients
 {
-    public class RestTranslationClient : ITranslationService
+    public class RestTranslationClient_Old : ITranslationService
     {
         private readonly HttpClient _httpClient;
 
-        public RestTranslationClient(HttpClient httpClient)
+        public RestTranslationClient_Old(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
@@ -36,7 +36,9 @@ namespace TranslateWebApp.Clients
             response.EnsureSuccessStatusCode();
 
             var responseContent = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<string>>(responseContent);
+            var result = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(responseContent);
+
+            return result["translations"];
         }
     }
 }

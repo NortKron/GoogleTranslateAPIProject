@@ -26,7 +26,7 @@ namespace TranslateWebApp
             services.AddControllers();
             services.AddEndpointsApiExplorer();
 
-            //services.AddGrpc();
+            services.AddGrpc();
             services.AddSwaggerGen();
 
             services.AddTransient<ITranslationService, TranslationService>();
@@ -36,10 +36,12 @@ namespace TranslateWebApp
                 options.Address = new Uri("https://localhost:5174/");
             });
 
+            /*
             services.AddHttpClient<RestTranslationClient>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:7212/");
             });
+            */
 
             services.AddTransient<IExternalTranslationApi, ExternalTranslationApi>();
             services.AddTransient<ITranslationCache, DataContext>();

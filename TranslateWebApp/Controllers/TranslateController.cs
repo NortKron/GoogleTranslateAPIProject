@@ -17,9 +17,9 @@ namespace TranslateWebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult about()
+        public async Task<IActionResult> about()
         {
-            string serviceInfo = _translationService.GetServiceInfoAsync();
+            string serviceInfo = await _translationService.GetServiceInfoAsync();
             return Ok(serviceInfo);
         }
 
