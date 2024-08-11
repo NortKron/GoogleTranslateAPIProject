@@ -5,7 +5,6 @@ GRPC-Server/
 REST-Client/
 
 .git-bit/
-.git-bit1/
 
 **/bin/
 **/obj/
