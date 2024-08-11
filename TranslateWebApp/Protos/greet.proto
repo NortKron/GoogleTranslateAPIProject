@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "TranslateWebApp";
+
+package greet;
+
+service TranslationGRPCService {
+    rpc GetServiceInfo (ServiceInfoRequest) returns (ServiceInfoResponse);
+    rpc Translate (TranslateRequest) returns (TranslateResponse);
+}
+
+message ServiceInfoRequest {}
+
+message ServiceInfoResponse {
+    string info = 1;
+}
+
+message TranslateRequest {
+    repeated string Input = 1;
+    string targetLanguage = 2;
+    string sourceLanguage = 3;
+}
+
+message TranslateResponse {
+    repeated string translations = 1;
+}

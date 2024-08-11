@@ -1,0 +1,6 @@
+@TranslateWebApp_HostAddress = http://localhost:5244
+
+GET {{TranslateWebApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
