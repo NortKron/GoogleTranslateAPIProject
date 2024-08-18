@@ -1,41 +1,49 @@
 ﻿using Newtonsoft.Json;
+using System.Net;
 using System.Text;
-
 using TranslateWebApp.Interfaces;
 
-public class RestTranslationClient : ITranslationService
+namespace REST_Client
 {
-    private readonly HttpClient _httpClient;
-
-    public RestTranslationClient(HttpClient httpClient)
+    public class RestTranslationClient : ITranslationService
     {
-        _httpClient = httpClient;
-    }
+        private readonly HttpClient _httpClient;
 
-    public async Task<string> GetServiceInfoAsync()
-    {
-        var response = await _httpClient.GetStringAsync("/api/translate");
-        return response;
-    }
-
-    public async Task<List<string>> TranslateAsync(List<string> inputStrings, string targetLanguage = "ru", string sourceLanguage = "en")
-    {
-        string jsonData = JsonConvert.SerializeObject(
-            new
+        public RestTranslationClient()
+        {
+            _httpClient = new HttpClient
             {
-                targetLanguage = targetLanguage,
-                sourceLanguage = sourceLanguage,
-                input = inputStrings
-            });
+                DefaultRequestVersion = HttpVersion.Version20,
+                DefaultVersionPolicy = HttpVersionPolicy.RequestVersionExact,
+                BaseAddress = new Uri("https://localhost:61807")
+            };
+        }
 
-        var requestContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        var response = await _httpClient.PostAsync("/api/translate/translate-lines", requestContent);
+        public async Task<string> GetServiceInfoAsync()
+        {
+            var response = await _httpClient.GetStringAsync("/api/translate");
+            return response;
+        }
 
-        response.EnsureSuccessStatusCode();
+        public async Task<List<string>> TranslateAsync(List<string> inputStrings, string targetLanguage = "ru", string sourceLanguage = "en")
+        {
+            string jsonData = JsonConvert.SerializeObject(
+                new
+                {
+                    targetLanguage = targetLanguage,
+                    sourceLanguage = sourceLanguage,
+                    input = inputStrings
+                });
 
-        var responseContent = await response.Content.ReadAsStringAsync();
-        var result = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(responseContent);
+            var requestContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("/api/translate/translate-lines", requestContent);
 
-        return result["translations"];
+            response.EnsureSuccessStatusCode();
+
+            var responseContent = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(responseContent);
+
+            return result["translations"];
+        }
     }
 }

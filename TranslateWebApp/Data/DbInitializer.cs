@@ -8,10 +8,9 @@ namespace TranslateWebApp.Data
         {
             context.Database.EnsureCreated();
 
-            // Look for any records
             if (context.InputStrings.Any() && context.Translations.Any())
             {
-                return;   // DB has been seeded
+                return;
             }
 
             var inputStrings = new InputStrings("test line", "ru", "en", DateTime.Now);

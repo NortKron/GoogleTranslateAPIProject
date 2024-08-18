@@ -3,11 +3,11 @@ using TranslateWebApp.Interfaces;
 
 namespace TranslateWebApp.Services
 {
-    public class TranslationServiceImpl : TranslationGRPCService.TranslationGRPCServiceBase
+    public class TranslationGRPCServiceImpl : TranslationGRPCService.TranslationGRPCServiceBase
     {
         private readonly ITranslationService _translationService;
 
-        public TranslationServiceImpl(ITranslationService translationService)
+        public TranslationGRPCServiceImpl(ITranslationService translationService)
         {
             _translationService = translationService;
         }
@@ -18,13 +18,14 @@ namespace TranslateWebApp.Services
 
             return new ServiceInfoResponse 
             { 
-                Info = info 
+                Info = info
             };
         }
 
         public override async Task<TranslateResponse> Translate(TranslateRequest request, ServerCallContext context)
         {
-            var translations = await _translationService.TranslateAsync(request.Texts.ToList(), request.FromLanguage, request.ToLanguage);
+            var translations = await _translationService.TranslateAsync(request.Input.ToList(), request.TargetLanguage, request.SourceLanguage);
+            
             var response = new TranslateResponse();
             response.Translations.AddRange(translations);
             return response;

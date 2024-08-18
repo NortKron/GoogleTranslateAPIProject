@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TranslateWebApp</name>
+    </assembly>
+    <members>
+        <member name="M:TranslateWebApp.Controllers.TranslateController.about">
+            <summary>
+            Get info about service
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:TranslateWebApp.Controllers.TranslateController.translate(System.Object)">
+            <summary>
+            Translate a list of strings
+            </summary>
+            <remarks>
+            Example request:
+            
+                POST /Todo
+                {
+                    "TargetLanguage": "ru",
+                    "SourceLanguage": "en",
+                    "Input": [
+                        "It is raining",
+                        "I am happy",
+                        "London is the capital of Great Britain"
+                    ]
+                }
+            </remarks>
+            <param>JSON</param>
+            <returns>List of translations</returns>
+        </member>
+        <member name="T:TranslateWebApp.GreetReflection">
+            <summary>Holder for reflection information generated from Protos/greet.proto</summary>
+        </member>
+        <member name="P:TranslateWebApp.GreetReflection.Descriptor">
+            <summary>File descriptor for Protos/greet.proto</summary>
+        </member>
+        <member name="F:TranslateWebApp.ServiceInfoResponse.InfoFieldNumber">
+            <summary>Field number for the "info" field.</summary>
+        </member>
+        <member name="F:TranslateWebApp.TranslateRequest.InputFieldNumber">
+            <summary>Field number for the "Input" field.</summary>
+        </member>
+        <member name="F:TranslateWebApp.TranslateRequest.TargetLanguageFieldNumber">
+            <summary>Field number for the "targetLanguage" field.</summary>
+        </member>
+        <member name="F:TranslateWebApp.TranslateRequest.SourceLanguageFieldNumber">
+            <summary>Field number for the "sourceLanguage" field.</summary>
+        </member>
+        <member name="F:TranslateWebApp.TranslateResponse.TranslationsFieldNumber">
+            <summary>Field number for the "translations" field.</summary>
+        </member>
+        <member name="P:TranslateWebApp.TranslationGRPCService.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:TranslateWebApp.TranslationGRPCService.TranslationGRPCServiceBase">
+            <summary>Base class for server-side implementations of TranslationGRPCService</summary>
+        </member>
+        <member name="M:TranslateWebApp.TranslationGRPCService.BindService(TranslateWebApp.TranslationGRPCService.TranslationGRPCServiceBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:TranslateWebApp.TranslationGRPCService.BindService(Grpc.Core.ServiceBinderBase,TranslateWebApp.TranslationGRPCService.TranslationGRPCServiceBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+    </members>
+</doc>

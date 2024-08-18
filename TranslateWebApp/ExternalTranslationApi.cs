@@ -5,7 +5,7 @@ namespace TranslateWebApp
 {
     public class ExternalTranslationApi : IExternalTranslationApi
     {
-        public const string apiKey = "googl-translate-token-api";
+        public const string apiKey = "google-translate-token-api";
 
         public string GetServiceName()
         {
