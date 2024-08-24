@@ -14,7 +14,6 @@ namespace REST_Client
             _httpClient = new HttpClient
             {
                 DefaultRequestVersion = HttpVersion.Version20,
-                DefaultVersionPolicy = HttpVersionPolicy.RequestVersionExact,
                 BaseAddress = new Uri("https://localhost:61807")
             };
         }
